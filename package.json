@@ -1,0 +1,40 @@
+{
+  "name": "@getarcaneapp/setup-cli",
+  "version": "0.0.0",
+  "private": true,
+  "description": "GitHub Action to install the Arcane CLI",
+  "scripts": {
+    "build": "node build.cjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "validate:action": "node scripts/validate-action-yml.mjs"
+  },
+  "dependencies": {
+    "@actions/core": "3.0.1",
+    "@actions/http-client": "4.0.1",
+    "@actions/tool-cache": "4.0.0",
+    "semver": "7.8.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.1",
+    "@types/node": "24.10.2",
+    "@types/semver": "7.7.1",
+    "esbuild": "0.28.0",
+    "eslint": "9.39.1",
+    "prettier": "3.7.3",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.48.1",
+    "vitest": "4.0.15",
+    "yaml": "2.8.2"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "packageManager": "pnpm@11.5.0+sha512.dbfcc4f81cf48597afd4bc391ffdf12c11f1a9fb83a395bfa6b0a2d9cc2fd8ffebafdb1ccbd529632153f793904c2615b7f09fe1a345473fd1c35845172a8eb1"
+}

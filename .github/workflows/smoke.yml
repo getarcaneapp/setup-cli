@@ -1,0 +1,35 @@
+name: Smoke Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Arcane CLI version to install
+        required: false
+        default: 1.19.5
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Arcane CLI
+        uses: ./
+        with:
+          version: ${{ inputs.version }}
+          github-token: ${{ github.token }}
+
+      - name: Verify CLI
+        run: arcane-cli --version

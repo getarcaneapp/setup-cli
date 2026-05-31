@@ -1,0 +1,24 @@
+name: Setup Arcane CLI
+description: Installs the Arcane CLI into the GitHub Actions environment
+author: Arcane
+branding:
+  icon: package
+  color: purple
+runs:
+  using: node24
+  main: dist/index.js
+inputs:
+  version:
+    description: Version of the Arcane CLI to install. Use latest, an exact version like 1.19.5, or a semver range like 1.x.
+    default: latest
+    required: false
+  github-token:
+    description: Optional GitHub token used when resolving Arcane releases through the GitHub API.
+    required: false
+outputs:
+  version:
+    description: Resolved Arcane CLI version that was installed.
+  path:
+    description: Directory added to PATH that contains the arcane-cli binary.
+  cache-hit:
+    description: Whether the Arcane CLI was restored from the runner tool cache.
