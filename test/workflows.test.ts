@@ -23,7 +23,7 @@ describe('GitHub workflows', () => {
     expect(source).toContain('./actionlint -color')
   })
 
-  test('release workflow publishes immutable and major action tags', async () => {
+  test('release workflow publishes immutable, major, and minor action tags', async () => {
     const { source, workflow } = await readWorkflow('release.yml')
 
     expect(workflow.name).toBe('Release')
@@ -31,6 +31,8 @@ describe('GitHub workflows', () => {
     expect(source).toContain('gh "${args[@]}"')
     expect(source).toContain('git tag "$RELEASE_VERSION" "$GITHUB_SHA"')
     expect(source).toContain('git tag -f "$MAJOR_VERSION" "$GITHUB_SHA"')
+    expect(source).toContain('git tag -f "$MINOR_VERSION" "$GITHUB_SHA"')
     expect(source).toContain('git push --force origin "refs/tags/$MAJOR_VERSION"')
+    expect(source).toContain('git push --force origin "refs/tags/$MINOR_VERSION"')
   })
 })
