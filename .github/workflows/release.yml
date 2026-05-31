@@ -85,9 +85,11 @@ jobs:
           major_version="v$major"
           minor_version="v$major.$minor"
 
-          echo "version=$RELEASE_VERSION" >> "$GITHUB_OUTPUT"
-          echo "major=$major_version" >> "$GITHUB_OUTPUT"
-          echo "minor=$minor_version" >> "$GITHUB_OUTPUT"
+          {
+            echo "version=$RELEASE_VERSION"
+            echo "major=$major_version"
+            echo "minor=$minor_version"
+          } >> "$GITHUB_OUTPUT"
         shell: bash
 
       - name: Create immutable version tag

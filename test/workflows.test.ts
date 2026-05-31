@@ -34,5 +34,7 @@ describe('GitHub workflows', () => {
     expect(source).toContain('git tag -f "$MINOR_VERSION" "$GITHUB_SHA"')
     expect(source).toContain('git push --force origin "refs/tags/$MAJOR_VERSION"')
     expect(source).toContain('git push --force origin "refs/tags/$MINOR_VERSION"')
+    expect(source).toContain('} >> "$GITHUB_OUTPUT"')
+    expect(source).not.toContain('echo "major=$major_version" >> "$GITHUB_OUTPUT"')
   })
 })
