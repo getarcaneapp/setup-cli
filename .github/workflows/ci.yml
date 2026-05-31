@@ -31,8 +31,20 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Lint and test
-        run: just lint all
+      - name: Check formatting
+        run: pnpm format:check
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Test
+        run: pnpm test
+
+      - name: Validate action metadata
+        run: pnpm validate:action
 
       - name: Build dist
         run: pnpm build
@@ -40,5 +52,10 @@ jobs:
       - name: Verify dist is current
         run: git diff --exit-code -- dist/index.js
 
+      - name: Download actionlint
+        run: bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash) 1.7.12
+        shell: bash
+
       - name: Validate workflows
-        uses: rhysd/actionlint@v1
+        run: ./actionlint -color
+        shell: bash
